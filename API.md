@@ -1,5 +1,7 @@
 # API（接口）设计
 
+https://www.fastmock.site/mock/ae8e9031947a302fed5f92425995aa19/jd
+
 ## 注册
 
 ### url   
@@ -304,7 +306,7 @@
 举例：
 
 `/api/shop/10/products?tab=all`
- 
+
 `/api/shop/10/products?tab=seckill`
 
 

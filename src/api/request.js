@@ -1,9 +1,15 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
-import store from '@/store'
-import { getToken } from '@/utils/auth'
+// import {
+//   Message
+// } from 'element-plus'
+// import store from '@/store'
+// import {
+//   getToken
+// } from '@/utils/auth'
 
 // 创建axios实例
+console.log(
+  import.meta.env.VITE_APP_BASE_API)
 const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API, // api的base_url
   timeout: 5000 // 请求超时时间
@@ -13,9 +19,9 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // Do something before request is sent
-    if (store.getters.token) {
-      config.headers['X-Token'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-    }
+    // if (store.getters.token) {
+    //   config.headers['X-Token'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    // }
     return config
   },
   (error) => {
@@ -33,7 +39,7 @@ service.interceptors.response.use(
    * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
    */
   //  const res = response.data;
-  //     if (res.code !== 20000) {
+  //     if (res.status !== 200) {
   //       Message({
   //         message: res.message,
   //         type: 'error',
@@ -57,11 +63,11 @@ service.interceptors.response.use(
   //     }
   (error) => {
     console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+    // Message({
+    //   message: error.message,
+    //   type: 'error',
+    //   duration: 5 * 1000
+    // })
     return Promise.reject(error)
   }
 )

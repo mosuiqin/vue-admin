@@ -89,7 +89,7 @@ const menuData = [
         route: 'itemThree'
       },
       {
-        index: '/one/itemOne',
+        index: '/one/itemFour',
         name: 'item four',
         img: 'keshihua',
         activeImg: 'keshihua-1',
