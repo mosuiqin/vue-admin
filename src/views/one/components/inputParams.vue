@@ -3,7 +3,7 @@
     {{ lists }}
     <button @click="handleAdd(data, lists)">新增</button>
     <button @click="handleSubmit(data, lists, config)">确认</button>
-    <el-form :model="config" class="content__item" @submit.native.prevent>
+    <el-form :model="formInput" class="content__item" @submit.native.prevent>
       <div v-for="(items, index) in data" :key="index" class="content__item">
         <el-form-item :label="i" v-for="(item, i) in items" :key="i" class="content__param">
           <el-input v-model="data[index][i]" class="content__input"></el-input>
@@ -29,6 +29,7 @@
 <script setup>
 import { ref } from 'vue'
 const props = defineProps(['lists', 'config'])
+const formInput = ref([])
 // const paramLists = {
 //   类型1: ['ip', '端口', '备注'],
 //   类型2: ['ip', '端口', '备注'],

@@ -31,3 +31,11 @@ export function postOrder(data) {
     data
   })
 }
+
+export function getShopList(params) {
+  return service({
+    url: '/api/shop/hot-list',
+    method: 'get',
+    params
+  })
+}
