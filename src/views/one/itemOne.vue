@@ -34,9 +34,9 @@ import contentParam from './components/contentParam.vue'
 //   console.log(res)
 // })
 
-// getAdress().then((res) => {
-//   console.log(res.data)
-// })
+getAdress().then((res) => {
+  console.log(res.data)
+})
 
 // const orderData = {}
 // postOrder(orderData).then((res) => {
