@@ -21,7 +21,7 @@
 
 <script setup>
 import { getAdress, postOrder, getShopList } from '../../api/getData'
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import contentParam from './components/contentParam.vue'
 // getInfo().then((res) => {
 //   console.log(res)
@@ -34,37 +34,26 @@ import contentParam from './components/contentParam.vue'
 //   console.log(res)
 // })
 
-getAdress().then((res) => {
-  console.log(res.data)
-})
+// getAdress().then((res) => {
+//   console.log(res.data)
+// })
 
-// const orderData = {}
+// const orderData = { name: '11' }
 // postOrder(orderData).then((res) => {
 //   console.log(res.data)
 // })
-const contentConfig1 = ref([
+const contentConfig1 = reactive([
   {
     name: 'one',
     checkLists: ['类型1']
-
-    // 类型1: [{ index: 0, ip: '', 端口: '', 备注: '' }],
-    // leixing2: [],
-    // lex3: []
   },
   {
     name: 'two',
-    checkLists: ['类型1', '类型2'],
-
-    类型1: [
-      { index: 0, ip: '', 端口: '', 备注: '' },
-      { index: 1, ip: '', 端口: '', 备注: '' }
-    ],
-    类型2: [{ index: 0, ip: '', 端口: '', 备注: '' }]
+    checkLists: ['类型1']
   },
   {
     name: 'three',
-    checkLists: ['类型3'],
-    类型3: [{ index: 0, ip: '', 端口: '' }]
+    checkLists: ['类型1']
   }
 ])
 const contentList1 = ['类型1', '类型2', '类型3']
@@ -87,6 +76,42 @@ const contentConfig2 = ref([
   }
 ])
 const contentList2 = ['类型1', '类型2', '类型4']
+
+const content = [
+  {
+    name: 'one',
+    类型1: [
+      { index: 0, ip: '10.10.10.1', 端口: '8080', 备注: '11111' },
+      { index: 0, ip: '10.10.10.1', 端口: '8080', 备注: '11111' }
+    ],
+    类型2: [{ index: 0, ip: '190.10.10.1', 端口: '5050', 备注: '2221' }]
+  },
+  {
+    name: 'two',
+    类型2: [{ index: 0, ip: '190.10.10.1', 端口: '5050', 备注: '2221' }]
+  }
+]
+
+const contentObj = content.reduce((prev, val) => {
+  const { name, ...typeList } = val
+
+  return {
+    ...prev,
+    [name]: typeList
+  }
+}, {})
+
+for (const item of contentConfig1) {
+  const targetObj = contentObj[item.name]
+  if (targetObj) {
+    item.checkLists = Object.keys(targetObj)
+    for (const target of Object.keys(targetObj)) {
+      item[target] = targetObj[target]
+    }
+  }
+}
+
+console.log(contentConfig1)
 
 const shopList = ref([])
 const shopInfo = ref([
@@ -119,14 +144,14 @@ const shopInfo = ref([
 //   ],
 
 onMounted(() => {
-  getShopList().then((res) => {
-    shopList.value = res.data.data
-    shopInfo.value.forEach((e, index) => {
-      // shopInfo.value[index].push(shopList.value[index])
-      console.log(e)
-      console.log(shopList.value[index])
-    })
-  })
+  // getShopList().then((res) => {
+  //   shopList.value = res.data.data
+  //   shopInfo.value.forEach((e, index) => {
+  //     // shopInfo.value[index].push(shopList.value[index])
+  //     // console.log(e)
+  //     // console.log(shopList.value[index])
+  //   })
+  // })
 })
 </script>
 

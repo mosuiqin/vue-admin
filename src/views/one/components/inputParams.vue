@@ -7,7 +7,6 @@
       <div v-for="(items, index) in data" :key="index" class="content__item">
         <el-form-item :label="i" v-for="(item, i) in items" :key="i" class="content__param">
           <el-input v-model="data[index][i]" class="content__input"></el-input>
-          {{ data[index][i] }}
         </el-form-item>
         <button class="content__dele" v-if="index > 0" @click="handleDele(data, index)">
           删除
