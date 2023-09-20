@@ -2,6 +2,20 @@
   <div class="container" @click.right="handleClick">
     item two
     <div class="wrapper" id="wrapper" v-show="isShow"></div>
+    <div class="main itembor">
+      <div class="ttile">wrapper</div>
+      <div class="item itembor">one</div>
+      <div class="item itembor">two</div>
+      <div class="item itembor">three</div>
+      <div class="item itembor">four</div>
+    </div>
+
+    <div class="verTest">
+      <div class="verTest__item">日照香炉生紫烟</div>
+      <div class="verTest__item">遥看瀑布挂前川</div>
+      <div class="verTest__item">飞流直下三千尺</div>
+      <div class="verTest__item">疑是银河落九天</div>
+    </div>
   </div>
 </template>
 
@@ -23,6 +37,18 @@ document.addEventListener('click', (e) => {
     console.log(11)
   }
 })
+document.addEventListener('mousemove', (e) => {
+  if (e.target.classList.contains('itembor') && !e.target.classList.contains('__active')) {
+    document.querySelectorAll('.itembor.__active').forEach((item) => {
+      item.classList.remove('__active')
+    })
+    e.target.classList.add('__active')
+  } else if (!e.target.classList.contains('itembor')) {
+    document.querySelectorAll('.itembor.__active').forEach((item) => {
+      item.classList.remove('__active')
+    })
+  }
+})
 </script>
 
 <style scoped lang="scss">
@@ -36,5 +62,44 @@ document.addEventListener('click', (e) => {
   width: 50px;
   height: 80px;
   background-color: aqua;
+}
+.main {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid red;
+}
+.main {
+  border-width: 2px;
+}
+.item {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid blue;
+}
+.itembor {
+  border-width: 1px;
+}
+.__active {
+  border-width: 3px;
+}
+.verTest {
+  position: absolute;
+  top: 10px;
+  left: 200px;
+  display: flex;
+  // align-items: center;
+  // justify-items: center;
+}
+.verTest__item {
+  writing-mode: vertical-rl;
+  border: 1px solid red;
+  padding: 2px;
+  width: 40px;
+  height: 200px;
+  text-align: center;
+  line-height: 40px;
 }
 </style>
