@@ -8,6 +8,8 @@
       <div class="item itembor">two</div>
       <div class="item itembor">three</div>
       <div class="item itembor">four</div>
+      <div class="itembor f1 fbox"></div>
+      <div class="itembor f2 fbox"></div>
     </div>
 
     <div class="verTest">
@@ -42,7 +44,14 @@ document.addEventListener('mousemove', (e) => {
     document.querySelectorAll('.itembor.__active').forEach((item) => {
       item.classList.remove('__active')
     })
-    e.target.classList.add('__active')
+    if (e.target.classList.contains('fbox')) {
+      console.log(e.target.classList)
+      document.querySelectorAll('.fbox').forEach((item) => {
+        item.classList.add('__active')
+      })
+    } else {
+      e.target.classList.add('__active')
+    }
   } else if (!e.target.classList.contains('itembor')) {
     document.querySelectorAll('.itembor.__active').forEach((item) => {
       item.classList.remove('__active')
@@ -82,8 +91,35 @@ document.addEventListener('mousemove', (e) => {
 .itembor {
   border-width: 1px;
 }
+
+.f1 {
+  width: 80px;
+  height: 40px;
+  border: 1px solid rgb(10, 93, 36);
+  border-bottom: none;
+}
+
+.f2 {
+  width: 120px;
+  height: 40px;
+  border: 1px solid rgb(5, 108, 23);
+  border-top: none;
+  position: relative;
+}
+.f2::before {
+  content: '';
+  border: inherit;
+  position: absolute;
+  top: 0;
+  right: 0;
+  // height: 20x;
+  width: 38px;
+}
 .__active {
   border-width: 3px;
+  &.f2::before {
+    width: 35px;
+  }
 }
 .verTest {
   position: absolute;

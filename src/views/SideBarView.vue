@@ -89,7 +89,7 @@ const menuData = [
         route: 'itemThree'
       },
       {
-        index: '/one/itemOne',
+        index: '/one/itemFour',
         name: 'item four',
         img: 'keshihua',
         activeImg: 'keshihua-1',
@@ -102,7 +102,10 @@ const menuData = [
     name: 'Navigator Two',
     img: 'kucunguanli',
     activeImg: 'kucunguanli-1',
-    children: [{ index: '2-1', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' }]
+    children: [
+      { index: '/two/itemOne', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' ,
+        route: 'itemOne'}
+    ]
   },
   {
     index: '3',
@@ -110,10 +113,23 @@ const menuData = [
     img: 'lishijilu',
     activeImg: 'lishijilu-1',
     children: [
-      { index: '3-1', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' },
-      { index: '3-2', name: 'item two', img: 'kaoqinrenyuan', activeImg: 'kaoqinrenyuan-1' },
-      { index: '3-3', name: 'item three', img: 'kaoqintongji', activeImg: 'kaoqintongji-1' },
-      { index: '3-4', name: 'item four', img: 'keshihua', activeImg: 'keshihua-1' }
+      { index: '/three/itemOne', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1',
+        route: 'itemOne' },
+      {
+        index: '/three/itemTwo',
+        name: 'item two',
+        img: 'kaoqinrenyuan',
+        activeImg: 'kaoqinrenyuan-1',
+        route: 'itemTwo'
+      },
+      {
+        index: '/three/itemThree',
+        name: 'item three',
+        img: 'kaoqintongji',
+        activeImg: 'kaoqintongji-1',
+        route: 'itemThree'
+      },
+      { index: '/three/itemFour', name: 'item four', img: 'keshihua', activeImg: 'keshihua-1',route: 'itemFour' }
     ]
   }
 ]

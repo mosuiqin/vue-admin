@@ -47,15 +47,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
 const isCollapse = ref(false)
 const activeItem = ref('1-1')
-const routerTo = ref('itemOne')
-const route = useRoute()
 const menuData = [
   {
     index: '1',
-    name: 'Navigator One',
+    name: 'Navigator One111',
     img: 'a-kejianxiangqing',
     activeImg: 'a-kejianxiangqing-1',
     children: [
@@ -64,7 +61,7 @@ const menuData = [
         name: 'item one',
         img: 'kaoqinbanci',
         activeImg: 'kaoqinbanci-1',
-        route: 'itemOne'
+        route: '/one/itemOne'
       },
       {
         index: '/one/itemTwo',
@@ -81,7 +78,7 @@ const menuData = [
         route: 'itemThree'
       },
       {
-        index: '/one/itemOne',
+        index: '/one/itemFour',
         name: 'item four',
         img: 'keshihua',
         activeImg: 'keshihua-1',
@@ -94,7 +91,9 @@ const menuData = [
     name: 'Navigator Two',
     img: 'kucunguanli',
     activeImg: 'kucunguanli-1',
-    children: [{ index: '2-1', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' }]
+    children: [
+      { index: '/two/itemOne', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' }
+    ]
   },
   {
     index: '3',
@@ -102,16 +101,25 @@ const menuData = [
     img: 'lishijilu',
     activeImg: 'lishijilu-1',
     children: [
-      { index: '3-1', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' },
-      { index: '3-2', name: 'item two', img: 'kaoqinrenyuan', activeImg: 'kaoqinrenyuan-1' },
-      { index: '3-3', name: 'item three', img: 'kaoqintongji', activeImg: 'kaoqintongji-1' },
-      { index: '3-4', name: 'item four', img: 'keshihua', activeImg: 'keshihua-1' }
+      { index: '/three/itemOne', name: 'item one', img: 'kaoqinbanci', activeImg: 'kaoqinbanci-1' },
+      {
+        index: '/three/itemTwo',
+        name: 'item two',
+        img: 'kaoqinrenyuan',
+        activeImg: 'kaoqinrenyuan-1'
+      },
+      {
+        index: '/three/itemThree',
+        name: 'item three',
+        img: 'kaoqintongji',
+        activeImg: 'kaoqintongji-1'
+      },
+      { index: '/three/itemFour', name: 'item four', img: 'keshihua', activeImg: 'keshihua-1' }
     ]
   }
 ]
 const handleClick = (item) => {
   activeItem.value = item.index
-  routerTo.value = item.route
 }
 const getImageUrl = (imageName) => {
   return new URL(`../assets/img/${imageName}.png`, import.meta.url).href

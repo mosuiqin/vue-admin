@@ -22,7 +22,15 @@
           <el-table-column prop="name" label="Name" width="100" />
           <el-table-column prop="address" label="Address" width="300" />
           <el-table-column prop="list" label="list" />
-          <el-table-column label="Operations" width="220">
+          <el-table-column prop="date" sortable label="Date" width="100" />
+          <el-table-column prop="name" label="Name" width="100" />
+          <el-table-column prop="address" label="Address" width="300" />
+          <el-table-column prop="list" label="list" />
+          <el-table-column prop="date" sortable label="Date" width="100" />
+          <el-table-column prop="name" label="Name" width="100" />
+          <el-table-column prop="address" label="Address" width="300" />
+          <el-table-column prop="list" label="list" />
+          <el-table-column label="Operations" width="220" fixed="right">
             <template #default="scope">
               <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
               <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"

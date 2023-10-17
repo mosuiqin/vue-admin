@@ -14,14 +14,14 @@ const router = createRouter({
     },
     {
       path: '/one',
-      redirect: '/one/itemOne',
+      // redirect: '/one/itemOne',
       alwaysShow: true, // will always show the root menu
       name: 'one',
       component: HomeView,
       children: [{
           path: 'itemOne',
           component: () => import('@/views/one/itemOne.vue'),
-          name: 'itemOne'
+          // name: 'itemOne'
         },
         {
           path: 'itemTwo',
@@ -37,6 +37,46 @@ const router = createRouter({
           path: 'itemFour',
           component: () => import('@/views/one/itemFour.vue'),
           name: 'itemFour'
+        }
+      ]
+    },
+    {
+      path: '/two',
+      redirect: '/two/itemOne',
+      alwaysShow: true, // will always show the root menu
+      name: 'two',
+      component: HomeView,
+      children: [{
+        path: 'itemOne',
+        component: () => import('@/view/two/itemOne.vue'),
+        // name: 'itemOne2'
+      }]
+    },
+    {
+      path: '/three',
+      redirect: '/three/itemOne',
+      alwaysShow: true, // will always show the root menu
+      name: 'three',
+      component: HomeView,
+      children: [{
+          path: 'itemOne',
+          component: () => import('@/views/three/itemOne.vue'),
+          name: 'itemOne2'
+        },
+        {
+          path: 'itemTwo',
+          component: () => import('@/views/three/itemTwo.vue'),
+          name: 'itemTwo2'
+        },
+        {
+          path: 'itemThree',
+          component: () => import('@/views/three/itemThree.vue'),
+          name: 'itemThree3'
+        },
+        {
+          path: 'itemFour',
+          component: () => import('@/views/three/itemFour.vue'),
+          name: 'itemFour4'
         }
       ]
     }
