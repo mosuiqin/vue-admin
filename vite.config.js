@@ -16,7 +16,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src',
-        import.meta.url))
+        import.meta.url)),
+      "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.module.js"
     }
   },
   server: {
