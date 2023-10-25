@@ -1,54 +1,65 @@
 <template>
   <div class="container">
-    <div id="cesiumContainer"></div>
+    <div class="item">
+      <div class="device" v-for="n in deviceNum" :key="n" @click="handelAlert()">
+        <div class="device__img"></div>
+        <div class="device__content">
+          <div class="device__content__name">1111</div>
+          <el-button class="device__content__del" @click.stop="handelDel()">删除</el-button>
+        </div>
+        <div class="test">11111111</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-window.CESIUM_BASE_URL = '/public/Cesium/'
-import { onMounted, ref } from 'vue'
-import { Terrain, Viewer, Cartesian3, Math as CesiumMath, Color } from 'cesium'
-import 'cesium/Build/Cesium/Widgets/widgets.css'
-
-const viewer = ref(null)
-onMounted(() => {
-  viewer.value = new Viewer('cesiumContainer', {
-    terrain: Terrain.fromWorldTerrain()
-  })
-
-  viewer.value.camera.flyTo({
-    destination: Cartesian3.fromDegrees(-122.4175, 37.655, 400),
-    orientation: {
-      heading: CesiumMath.toRadians(0.0),
-      pitch: CesiumMath.toRadians(-15.0)
-    }
-  })
-
-  // // Fly the camera to San Francisco at the given longitude, latitude, and height.
-  // viewer.value.camera.flyTo({
-  //   destination: Cesium.Cartesian3.fromDegrees(118.4175, 30.655, 400),
-  //   orientation: {
-  //     heading: Cesium.Math.toRadians(0.0),
-  //     pitch: Cesium.Math.toRadians(-15.0)
-  //   }
-  // })
-  viewer.value.entities.add({
-    name: 'Red box with black outline',
-    position: Cartesian3.fromDegrees(-107.0, 40.0, 300000.0),
-    box: {
-      dimensions: new Cartesian3(400000.0, 300000.0, 500000.0),
-      material: Color.RED.withAlpha(0.5),
-      outline: true,
-      outlineColor: Color.BLACK
-    }
-  })
-
-  // viewer.value.zoomTo(viewer.value.entities)
-})
+import { ref } from 'vue'
+const deviceNum = ref(5)
+const handelDel = () => {
+  deviceNum.value--
+}
+const handelAlert = () => {
+  alert(11)
+}
 </script>
 
 <style scoped lang="scss">
-.cesiumContainer {
-  height: 928px;
+.container {
+  position: relative;
+}
+.item {
+  display: flex;
+}
+.device {
+  border: 1px solid red;
+  width: 180px;
+  height: 120px;
+  margin-right: 10px;
+  position: relative;
+  &__img {
+    background-image: url('../../assets/img/a-kejianxiangqing-1.png');
+    background-size: cover;
+    width: 80px;
+    height: 80px;
+  }
+  &__content {
+    display: flex;
+    &__name {
+      flex: 1;
+    }
+  }
+}
+.test {
+  width: 182px;
+  height: 122px;
+  background-color: rgba(164, 40, 40, 0.5);
+  margin-right: 10px;
+  display: none;
+  position: absolute;
+  top: 0;
+}
+.device:hover .test {
+  display: block;
 }
 </style>
