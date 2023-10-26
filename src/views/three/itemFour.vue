@@ -1,62 +1,70 @@
 <template>
+  <div class="modelBtn">
+    <div class="btn" @click="handlemodel(modelName[0])">坦克</div>
+    <div class="btn" @click="handlemodel(modelName[1])">舰艇</div>
+    <div class="btn" @click="handlemodel(modelName[2])">通信车</div>
+  </div>
+  <div class="Btn Btn__add btn" @click="handlemodelNumAdd()">前进</div>
+  <div class="Btn Btn__del btn" @click="handlemodelNumDel()">后退</div>
   <div class="container" ref="screenDom"></div>
+  <div class="bcImg"></div>
 </template>
 
 <script setup>
-import * as THREE from 'three'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { onMounted, ref } from 'vue'
-
+import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { initThree, loadModel } from '../../utils/initThree'
 let screenDom = ref(null)
-
+let scene = reactive({})
+const modelName = ['tank', 'ship', 'csc']
+const modelNum = ref(0)
 onMounted(() => {
-  // 1.创建场景
-  const scene = new THREE.Scene()
-
-  // 2.创建透视投影相机
-  const camera = new THREE.PerspectiveCamera(
-    50,
-    screenDom.value.clientWidth / screenDom.value.clientHeight,
-    0.1,
-    1000
-  )
-  // 设置相机位置
-  //   camera.position.set(5, 10, 10)
-
-  // 3.创建WebGLRenderer渲染器
-  const renderer = new THREE.WebGLRenderer()
-  // 通过setSize()方法设置渲染的长宽
-  renderer.setSize(screenDom.value.clientWidth, screenDom.value.clientHeight)
-  // 设置渲染位置
-  screenDom.value.appendChild(renderer.domElement)
-
-  const geometry = new THREE.BoxGeometry(1, 1, 1)
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-  const cube = new THREE.Mesh(geometry, material)
-  scene.add(cube)
-
-  camera.position.z = 5
-
-  function animate() {
-    requestAnimationFrame(animate)
-
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
-
-    renderer.render(scene, camera)
-  }
-
-  animate()
+  scene = initThree(screenDom)
+  // loadModel(modelName[0], scene)
 })
+const handlemodel = (blo) => {
+  // loadModel(blo, scene)
+}
+const handlemodelNumAdd = () => {
+  modelNum.value += 1
+  if (modelNum.value >= modelName.length) {
+    modelNum.value = 0
+  }
+  handlemodel(modelName[modelNum.value], scene)
+}
+const handlemodelNumDel = () => {
+  modelNum.value -= 1
+  if (modelNum.value < 0) {
+    modelNum.value = modelName.length - 1
+  }
+  handlemodel(modelName[modelNum.value], scene)
+}
+// onBeforeUnmount(() => {
+//   try {
+//     scene.clear()
+//     renderer.dispose()
+//     renderer.forceContextLoss()
+//     renderer.content = null
+//     cancelAnimationFrame(animationID) // 去除animationFrame
+//     let gl = renderer.domElement.getContext('webgl')
+//     gl && gl.getExtension('WEBGL_lose_context').loseContext()
+//   } catch (e) {
+//     console.log(e)
+//   }
+// })
 </script>
 
 <style scoped lang="scss">
-.cesiumContainer {
-  height: 928px;
-  background-image: url('../../assets/img/dai_top2.jpg');
-  background-size: 100% 100%;
-}
 .container {
   height: 600px;
+  position: relative;
+  z-index: 9;
+}
+.bcImg {
+  width: 883px;
+  height: 322px;
+  background-image: url('../../assets/img/组_1_1.png');
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 140px;
 }
 </style>
