@@ -19,10 +19,10 @@ const modelName = ['tank', 'ship', 'csc']
 const modelNum = ref(0)
 onMounted(() => {
   scene = initThree(screenDom)
-  // loadModel(modelName[0], scene)
+  loadModel(modelName[0], scene)
 })
 const handlemodel = (blo) => {
-  // loadModel(blo, scene)
+  loadModel(blo, scene)
 }
 const handlemodelNumAdd = () => {
   modelNum.value += 1

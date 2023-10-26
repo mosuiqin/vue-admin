@@ -1,6 +1,11 @@
 import * as THREE from 'three'
-// import { OrbitControls } from 'OrbitControls'
-// import { GLTFLoader } from 'GLTFLoader'
+import {
+  OrbitControls
+} from 'three/examples/jsm/controls/OrbitControls'
+import {
+  GLTFLoader
+} from 'three/examples/jsm/loaders/GLTFLoader'
+
 export const initThree = (screenDom) => {
   // 1.创建场景
   const scene = new THREE.Scene()
@@ -14,7 +19,10 @@ export const initThree = (screenDom) => {
 
   camera.position.set(-4, 3, 2)
   // camera.lookAt(0, 0, 0)
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true
+  })
   renderer.setSize(screenDom.value.clientWidth, screenDom.value.clientHeight)
   renderer.setClearColor(0x000000, 0)
   screenDom.value.appendChild(renderer.domElement)
@@ -48,8 +56,8 @@ export const initThree = (screenDom) => {
   light9.position.set(-5, 10, 0)
   scene.add(light9)
 
-  // const controls = new OrbitControls(camera, renderer.domElement)
-  // controls.update()
+  const controls = new OrbitControls(camera, renderer.domElement)
+  controls.update()
 
   const render = () => {
     renderer.render(scene, camera) // 渲染场景
@@ -68,10 +76,10 @@ export const initThree = (screenDom) => {
 
 export const loadModel = (blo, scene) => {
   deleteObject(scene)
-  // const loader = new GLTFLoader()
-  // loader.load(`/model/${blo}.gltf`, function (gltf) {
-  //   scene.add(gltf.scene)
-  // })
+  const loader = new GLTFLoader()
+  loader.load(`/model/${blo}.gltf`, function (gltf) {
+    scene.add(gltf.scene)
+  })
 }
 
 export const deleteObject = (scene) => {
@@ -104,7 +112,10 @@ export const initThree2 = (screenDom) => {
 
   camera.position.set(-4, 3, 2)
   camera.lookAt(0, 0, 0)
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true
+  })
   renderer.setSize(screenDom.value.clientWidth, screenDom.value.clientHeight)
   renderer.setClearColor(0x000000, 0)
   screenDom.value.appendChild(renderer.domElement)

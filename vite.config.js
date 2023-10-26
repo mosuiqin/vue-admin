@@ -1,41 +1,43 @@
-import { fileURLToPath, URL } from 'node:url'
+import {
+  fileURLToPath,
+  URL
+} from 'node:url'
 
-import { defineConfig } from 'vite'
+import {
+  defineConfig
+} from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
   resolve: {
-    // alias: {
-    //   '@': fileURLToPath(new URL('./src', import.meta.url)),
-    //   // three: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.157.0/three.module.js'
-    //   three: fileURLToPath(
-    //     new URL('./THREEJS/three.js-r157/build/three.module.js', import.meta.url)
-    //   ),
-    //   'three/addons/*': fileURLToPath(new URL('./THREEJS/examples/jsm', import.meta.url))
-    // }
-    alias: [
-      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) }
-      // {
-      //   find: 'three',
-      //   replacement: fileURLToPath(
-      //     new URL('./THREEJS/three.js-r157/build/three.module.js', import.meta.url)
-      //   )
-      // },
-      // {
-      //   find: 'OrbitControls',
-      //   replacement: fileURLToPath(
-      //     new URL('./THREEJS/examples/jsm/controls/OrbitControls.js', import.meta.url)
-      //   )
-      // },
-      // {
-      //   find: 'GLTFLoader',
-      //   replacement: fileURLToPath(
-      //     new URL('./THREEJS/examples/jsm/loaders/GLTFLoader.js', import.meta.url)
-      //   )
-      // }
-    ]
+    alias: {
+      '@': fileURLToPath(new URL('./src',
+        import.meta.url)),
+
+    }
+    // alias: [{
+    //     find: '@',
+    //     replacement: fileURLToPath(new URL('./src',
+    //       import.meta.url))
+    //   },
+    //   {
+    //     find: 'three',
+    //     replacement: 'https://unpkg.com/three@0.138.0/build/three.module.js'
+    //   },
+    //   {
+    //     find: 'orbitControls',
+    //     replacement: 'https://unpkg.com/three@0.138.0/examples/jsm/controls/OrbitControls.js'
+    //   },
+    //   // {
+    //   //   find: 'GLTFLoader',
+    //   //   replacement: fileURLToPath(
+    //   //     new URL('./THREEJS/examples/jsm/loaders/GLTFLoader.js',
+    //   //       import.meta.url)
+    //   //   )
+    //   // }
+    // ]
   },
   server: {
     proxy: {
