@@ -10,11 +10,14 @@
         <div class="test">11111111</div>
       </div>
     </div>
+    <lineCharts v-if="data.x" :data="data" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import lineCharts from './components/lineCharts.vue'
+import { readTXT } from '../../utils/readTXT'
 const deviceNum = ref(5)
 const handelDel = () => {
   deviceNum.value--
@@ -22,6 +25,12 @@ const handelDel = () => {
 const handelAlert = () => {
   alert(11)
 }
+const data = ref({})
+onMounted(() => {
+  readTXT('/public/data.txt').then((res) => {
+    data.value = res
+  })
+})
 </script>
 
 <style scoped lang="scss">
