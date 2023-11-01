@@ -5,7 +5,10 @@ import {
 import {
   GLTFLoader
 } from 'three/examples/jsm/loaders/GLTFLoader'
-
+import {
+  ref
+} from 'vue'
+const model = ref()
 export const initThree = (screenDom) => {
   // 1.创建场景
   const scene = new THREE.Scene()
@@ -59,12 +62,22 @@ export const initThree = (screenDom) => {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.update()
 
+
+  let T0 = new Date()
   const render = () => {
+    let T1 = new Date(); //本次时间
+    let t = T1 - T0; //时间差
+    T0 = T1; //把本次时间赋值给上次时间
     renderer.render(scene, camera) // 渲染场景
+    if (model.value) {
+      model.value.rotateY(0.0005 * t)
+    }
     requestAnimationFrame(render) // 循环渲染
+
   }
 
-  render()
+  setTimeout(render(), 50);
+
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight)
     camera.aspect = window.innerWidth / window.innerHeight
@@ -78,6 +91,8 @@ export const loadModel = (blo, scene) => {
   deleteObject(scene)
   const loader = new GLTFLoader()
   loader.load(`/model/${blo}.gltf`, function (gltf) {
+    model.value = gltf.scene
+    console.log(model.value);
     scene.add(gltf.scene)
   })
 }
