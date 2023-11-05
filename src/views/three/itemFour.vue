@@ -11,32 +11,36 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
-import { initThree, loadModel } from '../../utils/initThree'
+import { onMounted, reactive, ref } from 'vue'
+// import { initThree, loadModel } from '../../utils/initThree'
+import { ThreeModel } from '../../utils/initThree'
 let screenDom = ref(null)
-let scene = reactive({})
+let threeLoad = reactive({})
 const modelName = ['tank', 'ship', 'csc']
 const modelNum = ref(0)
 onMounted(() => {
-  scene = initThree(screenDom)
-  loadModel(modelName[0], scene)
+  // scene = initThree(screenDom)
+  threeLoad = new ThreeModel(screenDom)
+  threeLoad.loadModel(modelName[0])
+  // loadModel(modelName[0], scene)
 })
 const handlemodel = (blo) => {
-  loadModel(blo, scene)
+  // loadModel(blo, scene)
+  threeLoad.loadModel(blo)
 }
 const handlemodelNumAdd = () => {
   modelNum.value += 1
   if (modelNum.value >= modelName.length) {
     modelNum.value = 0
   }
-  handlemodel(modelName[modelNum.value], scene)
+  handlemodel(modelName[modelNum.value])
 }
 const handlemodelNumDel = () => {
   modelNum.value -= 1
   if (modelNum.value < 0) {
     modelNum.value = modelName.length - 1
   }
-  handlemodel(modelName[modelNum.value], scene)
+  handlemodel(modelName[modelNum.value])
 }
 // onBeforeUnmount(() => {
 //   try {

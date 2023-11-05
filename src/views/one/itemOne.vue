@@ -1,22 +1,24 @@
 <template>
-  <div class="container">
-    <div class="title">item one</div>
-    {{ shopInfo }}
-    <contentParam
-      :list="contentList1"
-      :config="config"
-      v-for="(config, index) in contentConfig1"
-      :key="index"
-    ></contentParam>
+  <el-scrollbar max-height="900px">
+    <div class="container">
+      <div class="title">item one</div>
+      {{ shopInfo }}
+      <contentParam
+        :list="contentList1"
+        :config="config"
+        v-for="(config, index) in contentConfig1"
+        :key="index"
+      ></contentParam>
 
-    <div class="title">item two</div>
-    <contentParam
-      :list="contentList2"
-      :config="config"
-      v-for="(config, index) in contentConfig2"
-      :key="index"
-    ></contentParam>
-  </div>
+      <div class="title">item two</div>
+      <contentParam
+        :list="contentList2"
+        :config="config"
+        v-for="(config, index) in contentConfig2"
+        :key="index"
+      ></contentParam>
+    </div>
+  </el-scrollbar>
 </template>
 
 <script setup>
@@ -156,6 +158,13 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+// :deep(.el-scrollbar__wrap) {
+//   height: 105%;
+//   width: 105%;
+// }
+:deep(.el-scrollbar__thumb) {
+  background-color: turquoise;
+}
 .conent {
   background-color: rgb(223, 146, 146);
   margin: 10px;

@@ -1,71 +1,75 @@
 <template>
   <div class="container">
     <el-container>
-      <el-header class="topbar">
-        <el-button>用户管理</el-button>
-        <div class="topbar__left">
-          <el-select v-model="selectdValue">
-            <el-option
-              :placeholder="selectValue[0]"
-              v-for="item in value11"
-              :label="`${item}M`"
-              :value="item"
-              :key="item"
-            ></el-option>
-          </el-select>
-        </div>
-      </el-header>
-      <el-main>
-        <el-table :data="tableData" style="width: 100%" max-height="800">
-          <el-table-column type="index" width="50" />
-          <el-table-column prop="date" sortable label="Date" width="100" />
-          <el-table-column prop="name" label="Name" width="100" />
-          <el-table-column prop="address" label="Address" width="300" />
-          <el-table-column prop="list" label="list" />
-          <el-table-column prop="date" sortable label="Date" width="100" />
-          <el-table-column prop="name" label="Name" width="100" />
-          <el-table-column prop="address" label="Address" width="300" />
-          <el-table-column prop="list" label="list" />
-          <el-table-column prop="date" sortable label="Date" width="100" />
-          <el-table-column prop="name" label="Name" width="100" />
-          <el-table-column prop="address" label="Address" width="300" />
-          <el-table-column prop="list" label="list" />
-          <el-table-column label="Operations" width="220" fixed="right">
-            <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"
-                >Delete</el-button
-              >
-              <el-button size="small" @click="handleForbid(scope.$index, scope.row)"
-                >forbid</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-        <div class="pagenation">
-          <el-button @click="handleHomepage">首页</el-button>
-          <el-pagination
-            class="elpagination"
-            v-model:current-page="currentPage"
-            v-model:page-size="pageSize"
-            :background="background"
-            :page-sizes="[20, 30, 40]"
-            layout="sizes,prev, pager, next, jumper"
-            :total="mockData.length"
-            @current-change="handleCurrentChange"
-            @size-change="handleSizeChange"
-          />
-        </div>
-        <div class="infoWraspper" v-show="showInfo">
-          <div @click="showInfo = false">x</div>
-          <div class="title" id="title"></div>
-          <div class="content" id="content">
-            <div class="title">用户名</div>
-            <el-input :placeholder="infoData.name" v-model="infoName"></el-input>
-            <el-button @click="handleadd">提交</el-button>
+
+        <el-header class="topbar">
+          <el-button>用户管理</el-button>
+          <div class="topbar__left">
+            <el-select v-model="selectdValue">
+              <el-option
+                :placeholder="selectValue[0]"
+                v-for="item in value11"
+                :label="`${item}M`"
+                :value="item"
+                :key="item"
+              ></el-option>
+            </el-select>
           </div>
-        </div>
-      </el-main>
+        </el-header>
+        <el-main>
+          <el-table :data="tableData" style="width: 100%" max-height="800">
+            <el-table-column type="index" width="50" />
+            <el-table-column prop="date" sortable label="Date" width="100" />
+            <el-table-column prop="name" label="Name" width="100" />
+            <el-table-column prop="address" label="Address" width="300" />
+            <el-table-column prop="list" label="list" />
+            <el-table-column prop="date" sortable label="Date" width="100" />
+            <el-table-column prop="name" label="Name" width="100" />
+            <el-table-column prop="address" label="Address" width="300" />
+            <el-table-column prop="list" label="list" />
+            <el-table-column prop="date" sortable label="Date" width="100" />
+            <el-table-column prop="name" label="Name" width="100" />
+            <el-table-column prop="address" label="Address" width="300" />
+            <el-table-column prop="list" label="list" />
+            <el-table-column label="Operations" width="220" fixed="right">
+              <template #default="scope">
+                <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
+                  >Edit</el-button
+                >
+                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)"
+                  >Delete</el-button
+                >
+                <el-button size="small" @click="handleForbid(scope.$index, scope.row)"
+                  >forbid</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="pagenation">
+            <el-button @click="handleHomepage">首页</el-button>
+            <el-pagination
+              class="elpagination"
+              v-model:current-page="currentPage"
+              v-model:page-size="pageSize"
+              :background="background"
+              :page-sizes="[20, 30, 40]"
+              layout="sizes,prev, pager, next, jumper"
+              :total="mockData.length"
+              @current-change="handleCurrentChange"
+              @size-change="handleSizeChange"
+            />
+          </div>
+          <div class="infoWraspper" v-show="showInfo">
+            <div @click="showInfo = false">x</div>
+            <div class="title" id="title"></div>
+            <div class="content" id="content">
+              <div class="title">用户名</div>
+              <el-input :placeholder="infoData.name" v-model="infoName"></el-input>
+              <el-button @click="handleadd">提交</el-button>
+            </div>
+          </div>
+        </el-main>
+  
     </el-container>
     <div class="topbar"></div>
   </div>
